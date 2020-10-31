@@ -160,7 +160,7 @@ var frog = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/imag
 var flyingfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Flying%20Fish%20(Docasset).png";
 var olm = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Olm%20(Docassets).png";
 var horseshoecrab = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Horseshoe%20Crab%20(Docassets).png";
-var squid = "https://cdn.discordapp.com/attachments/346088191377408011/704759943265386597/Squid_Docassets.png";
+var squid = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Squid%20(Docassets).png";
 var giantisopod = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Giant%20Isopod%20(Docassets).png";
 var giantisopodclosed = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Giant%20Isopod%20Closed%20(Docassets).png";
 var littleauk = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Little%20Auk%20(Docassets).png";
@@ -261,8 +261,8 @@ var reef = "https://cdn.discordapp.com/attachments/735586325478113384/7626882495
 var reef2 = "https://cdn.discordapp.com/attachments/735586325478113384/765777429733572608/reef2.png";
 var swamp = "";
 
-var clam1 = "https://cdn.discordapp.com/attachments/346088191377408011/766430862182973460/Pearl_Shell_display_Docassets.png";
-var clam2 = "https://cdn.discordapp.com/attachments/346088191377408011/766430997503803442/Pearl_Stand_display_Docassets.png";
+var clam1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/Pearl%20Shell%20display%20(Docassets).png";
+var clam2 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/Pearl%20Stand%20display%20(Docassets).png";
 
 //script
 
