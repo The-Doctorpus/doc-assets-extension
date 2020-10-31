@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Doctorpus Assets",
+    "description": "a Deeeep.io Asset Pack!",
+    "version": "1.0.12",
+    "icons": {"128": "Docassetsicon.png"},
+    "background": {"scripts":["background.js"]},
+  "permissions": [
+    "webRequest",
+    "https://deeeep.io/*",
+    "webRequestBlocking",
+    "storage"
+  ],
+  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false,
+    "chrome_style": true
+  },
+  
+"web_accessible_resources": ["bundle.js"]
+}
