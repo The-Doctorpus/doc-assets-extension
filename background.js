@@ -266,7 +266,7 @@ var clam2 = "https://cdn.discordapp.com/attachments/346088191377408011/766430997
 
 //script
 
-script = `chrome-extension://${chrome.runtime.id}/bundle.js`;
+script = 'https://the-doctorpus.github.io/doc-assets-scripts/bundle.js';
   
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
