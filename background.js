@@ -31,31 +31,31 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 //assets
 
 var assets = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassets.png";
-var halloweenassets = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassets.png";
+var seasonalassets = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassets.png";
 var assets1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassets-1.png";
-var halloweenassets1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassets-1.png";
+var seasonalassets1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassets-1.png";
 var assets2 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassets-2.png";
-var halloweenassets2 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassets-2.png";
+var seasonalassets2 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassets-2.png";
 var assetsswamp = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docswampassets.png";
-var halloweenassetsswamp = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocswampassets.png";
+var seasonalassetsswamp = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docswampassets.png";
 var assetsfood = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsfoods.png";
-var halloweenassetsfood = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsfoods.png";
+var seasonalassetsfood = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsfoods.png";
 var bkgr = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/bgimage%20(Docassets).png";
-var halloweenbkgr = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/bgimage%20(Halloween).png";
+var seasonalbkgr = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/bgimage%20(Docassets).png";
 var assetsterrain1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain1.png";
-var halloweenassetsterrain1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsterrain1.png";
+var seasonalassetsterrain1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsterrain1.png";
 var assetsterrain2 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain2.png";
-var halloweenassetsterrain2 = "";
+var seasonalassetsterrain2 = "";
 var assetsterrain3 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain3.png";
-var halloweenassetsterrain3 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsterrain3.png";
+var seasonalassetsterrain3 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsterrain3.png";
 var assetsterrain4 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain4.png";
-var halloweenassetsterrain4 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsterrain4.png";
+var seasonalassetsterrain4 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsterrain4.png";
 var assetsterrain5 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain5.png";
-var halloweenassetsterrain5 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsterrain5.png";
+var seasonalassetsterrain5 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsterrain5.png";
 var assetsterrain6 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain6.png";
-var halloweenassetsterrain6 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsterrain6.png";
+var assetsterrain6 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsterrain6.png";
 var assetsterrain7 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docassetsterrain7.png";
-var halloweenassetsterrain7 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/halloween/halloweendocassetsterrain7.png";
+var assetsterrain7 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/current_season/docassetsterrain7.png";
 var pdassets = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/docpdassets.png";
 var absorb = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/animations/absorb%20(Docassets).png";
 var poisonblast = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/animations/Poison%20Blastv2%20(Docassets).png";
@@ -284,7 +284,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-        var assetUrl = options.Halloween ? halloweenassets : assets; 
+        var assetUrl = options.Halloween ? seasonalassets : assets; 
         return {redirectUrl: assetUrl};
     },
     {
@@ -298,7 +298,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-        var assetUrl = options.Halloween ? halloweenassets1 : assets1; 
+        var assetUrl = options.Halloween ? seasonalassets1 : assets1; 
         return {redirectUrl: assetUrl};
     },
     {
@@ -312,7 +312,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassets2 : assets2; 
+            var assetUrl = options.Halloween ? seasonalassets2 : assets2; 
             return {redirectUrl: assetUrl};
         },
         {
@@ -326,7 +326,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsswamp : assetsswamp; 
+            var assetUrl = options.Halloween ? seasonalassetsswamp : assetsswamp; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -340,7 +340,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenbkgr : bkgr; 
+            var assetUrl = options.Halloween ? seasonalbkgr : bkgr; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -354,7 +354,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsfood : assetsfood; 
+            var assetUrl = options.Halloween ? seasonalassetsfood : assetsfood; 
             return {redirectUrl: assetUrl};
         },
         {
@@ -368,7 +368,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsterrain1 : assetsterrain1; 
+            var assetUrl = options.Halloween ? seasonalassetsterrain1 : assetsterrain1; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -382,7 +382,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsterrain3 : assetsterrain3; 
+            var assetUrl = options.Halloween ? seasonalassetsterrain3 : assetsterrain3; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -396,7 +396,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsterrain4 : assetsterrain4; 
+            var assetUrl = options.Halloween ? seasonalassetsterrain4 : assetsterrain4; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -410,7 +410,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsterrain5 : assetsterrain5; 
+            var assetUrl = options.Halloween ? seasonalassetsterrain5 : assetsterrain5; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -424,7 +424,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsterrain6 : assetsterrain6; 
+            var assetUrl = options.Halloween ? assetsterrain6 : assetsterrain6; 
              return {redirectUrl: assetUrl};
         },
         {
@@ -438,7 +438,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
-            var assetUrl = options.Halloween ? halloweenassetsterrain7 : assetsterrain7; 
+            var assetUrl = options.Halloween ? assetsterrain7 : assetsterrain7; 
              return {redirectUrl: assetUrl};
         },
         {
