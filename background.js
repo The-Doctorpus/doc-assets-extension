@@ -142,6 +142,30 @@ var platinumgar = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/ma
 var ferociousgar = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Ferocious%20Gar%20(Docassets).png";
 var muskellunge = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Muskellunge%20(Docassets).png";
 
+var bigeyethresher = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Bigeye%20Thresher%20(Docassets).png"
+var exoticmoray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Exotic Moray (Docassets).png"
+var sleeperray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Sleeper%20Ray%20(Docassets).png"
+var coffinray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Coffin%20Ray%20(Docassets).png"
+var southamericansnapper = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/South%20American%20Snapper%20(Docassets).png"
+var lancetfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Lancetfish%20Lancetfish.png"
+var barredmoray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Barred%20Moray%20(Docassets).png"
+var goldenpolar = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Golden%20Polar%20Bear%20(Docassets).png"
+var fraserdolphin = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Frasers%20Dolphin%20(Docassets).png"
+var danaocto = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dana%20Octo%20Squid%20(Docassets).png"
+var yellowmahi = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Yellow%20Mahi%20(Docassets).png"
+var murrelet = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Murrelet%20(Docassets).png"
+var japanesewobbegong = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Japanese%20Wobbegong%20(Docassets).png"
+var peruvianpelican = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Peruvian%20Pelican%20(Docassets).png"
+var darkhammerhead = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dark%20Hammerhead%20(Docassets).png"
+var bluegoblin = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Blue%20Goblin%20Shark%20(Docassets).png"
+var australiansealion = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Australian%20Sea%20Lion(Docassets).png"
+var orangeclownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Orange%20Clownfish%20(Docassets).png"
+var wartyfrogfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Warty%20Frogfish%20(Docassets).png"
+var ferocioussleeper = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Ferocious%20Sleeper%20(Docassets).png"
+var matamata = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Mata%20Mata%20(Docassets).png"
+var darkleatherback = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dark%20Leatherback%20(Docassets).png"
+var graywhale = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Gray%20Whale%20(Docassets).png"
+
 //animals
 
 var clownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Clownfish%20(Docasset).png";
@@ -1527,6 +1551,266 @@ chrome.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://deeeep.io/assets/skins/muskellunge.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: peruvianpelican};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/105-3.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: lancetfish};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/122-5.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: southamericansnapper};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/132-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: barredmoray};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/153-2.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: goldenpolar};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/169-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: fraserdolphin};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/171-2.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: danaocto};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/177-2.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: yellowmahi};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/380-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: murrelet};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/503-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: japanesewobbegong};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/512-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: bluegoblin};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/525-2.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: australiansealion};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/561-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: ferocioussleeper};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/636-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: matamata};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/680-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: darkleatherback};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/685-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: graywhale};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/735-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: bigeyethresher};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/84-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: exoticmoray};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/93-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: sleeperray};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/94-1.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: coffinray};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/95-1.png?*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
