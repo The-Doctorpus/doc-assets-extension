@@ -158,7 +158,7 @@ var japanesewobbegong = "https://raw.githubusercontent.com/The-Doctorpus/doc-ass
 var peruvianpelican = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Peruvian%20Pelican%20(Docassets).png"
 var darkhammerhead = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dark%20Hammerhead%20(Docassets).png"
 var bluegoblin = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Blue%20Goblin%20Shark%20(Docassets).png"
-var australiansealion = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Australian%20Sea%20Lion(Docassets).png"
+var australiansealion = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Australian%20Sea%20Lion%20(Docassets).png"
 var orangeclownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Orange%20Clownfish%20(Docassets).png"
 var wartyfrogfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Warty%20Frogfish%20(Docassets).png"
 var ferocioussleeper = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Ferocious%20Sleeper%20(Docassets).png"
@@ -178,7 +178,8 @@ var ocellatedfrogfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-ass
 var bluemahi = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Blue%20Mahi%20(Docassets).png"
 var greenleatherback = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Green%20Leatherback%20(Docassets).png"
 var mediterraneanmoray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Mediterranean%20Moray%20(Docassets).png"
-
+var commondolphin = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Common%20Dolphin%20(Docassets).png"
+var spinnerdolphin = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Spinner%20Dolphin%20(Docassets).png"
 //animals
 
 var clownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Clownfish%20(Docasset).png";
@@ -1668,7 +1669,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            "https://deeeep.io/assets/skins/custom/380-1.png*"
+            "https://deeeep.io/assets/skins/custom/380-2.png*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
@@ -1703,7 +1704,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: bluegoblin};
+         return {redirectUrl: darkhammerhead};
     },
     {
         urls: [
@@ -1937,6 +1938,19 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
+         return {redirectUrl: bluegoblin};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/559-1.png*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
          return {redirectUrl: pelicaneel};
     },
     {
@@ -1950,11 +1964,24 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: ocell};
+         return {redirectUrl: ocellatedfrogfish};
     },
     {
         urls: [
             "https://deeeep.io/assets/skins/custom/896-1.png*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: ocellatedfrogfish};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/592-1.png*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
@@ -1989,11 +2016,50 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
+         return {redirectUrl: orangeclownfish};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/570-1.png*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
          return {redirectUrl: mediterraneanmoray};
     },
     {
         urls: [
             "https://deeeep.io/assets/skins/custom/903-1.png*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: commondolphin};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/888-1.png*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: spinnerdolphin};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/894-1.png*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
