@@ -1977,7 +1977,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: ocellatedfrogfish};
+         return {redirectUrl: wartyfrogfish};
     },
     {
         urls: [
