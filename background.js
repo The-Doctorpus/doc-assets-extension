@@ -177,6 +177,7 @@ var pelicaneel = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/mai
 var ocellatedfrogfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Ocellated%20Frogfish%20(Docassets).png"
 var bluemahi = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Blue%20Mahi%20(Docassets).png"
 var greenleatherback = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Green%20Leatherback%20(Docassets).png"
+var mediterraneanmoray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Mediterranean%20Moray%20(Docassets).png"
 
 //animals
 
@@ -202,6 +203,7 @@ var giantisopodclosed = "https://raw.githubusercontent.com/The-Doctorpus/doc-ass
 var littleauk = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Little%20Auk%20(Docassets).png";
 var catfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Catfish%20(Docassets).png";
 var axolotl = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Axolotl%20(Docassets).png";
+var hermitcrab = "";
 var seagull = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Seagull%20(Docassets).png";
 var duck = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Duck%20(Docassets).png";
 var seal = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Seal%20(Docassets).png";
@@ -1985,6 +1987,19 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: mediterraneanmoray};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/903-1.png*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
 //animals ------------------------------------------------------------------------------------------------------------------------------------
 
 chrome.webRequest.onBeforeRequest.addListener(
@@ -2267,6 +2282,19 @@ chrome.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://deeeep.io/assets/characters/axolotl.png"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: hermitcrab};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/characters/hermitcrab.png"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
