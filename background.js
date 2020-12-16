@@ -166,6 +166,7 @@ var matamata = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/
 var darkleatherback = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dark%20Leatherback%20(Docassets).png"
 var graywhale = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Gray%20Whale%20(Docassets).png"
 var ornatewobbegong = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Ornate%20Wobbegong%20(Docassets).png"
+var tassledwobbegong = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Tassled%20Wobbegong%20(Docassets).png"
 var tern = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Tern%20(Docassets).png"
 var dragonmoray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dragon%20Moray%20(Docassets).png"
 var darksleeper = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Dark%20Sleeper%20(Docassets).png"
@@ -1847,6 +1848,19 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
+         return {redirectUrl: tassledwobbegong};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/1561-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
          return {redirectUrl: tern};
     },
     {
@@ -2007,7 +2021,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            "https://deeeep.io/assets/skins/custom/900-*"
+            "https://deeeep.io/assets/skins/custom/1566-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
@@ -2033,7 +2047,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            "https://deeeep.io/assets/skins/custom/903-*"
+            "https://deeeep.io/assets/skins/custom/1679-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
