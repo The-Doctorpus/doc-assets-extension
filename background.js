@@ -196,6 +196,9 @@ var wondershark = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/ma
 var grincheel = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Grinch%20Moray%20(Docassets).png"
 var carolthresher = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Caroling%20Thresher%20(Docassets).png"
 var snowray = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Snow%20Ray%20(Docassets).png"
+var giftopod = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Giftopod%20(Docassets).png"
+var giftopodclosed = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Giftopod%20Closed%20(Docassets).png"
+var coldbrew = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Cold%20Brew%20(Docassets).png"
 //animals
 
 var clownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Clownfish%20(Docasset).png";
@@ -2277,6 +2280,44 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: giftopod};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/giftsopod.png?-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: giftopodclosed};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/giftsopodclosed.png?*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: coldbrew};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/santabear.png?-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
 //animals ------------------------------------------------------------------------------------------------------------------------------------
 
 chrome.webRequest.onBeforeRequest.addListener(
