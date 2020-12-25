@@ -222,7 +222,7 @@ var sandbarshark = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/m
 
 var southerncavefish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Southern%20Cavefish%20(Docassets).png"
 var bumblebeecatfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Bumblebee%20Catfish%20(Docassets).png"
-
+var bronzewhaler = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Bronze%20Whaler%20(Docassets).png"
 //animals
 
 var clownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Clownfish%20(Docasset).png";
@@ -2308,6 +2308,19 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
+         return {redirectUrl: bluelobster};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/186-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
          return {redirectUrl: americanlobster};
     },
     {
@@ -2377,7 +2390,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            "https://deeeep.io/assets/skins/custom/256-*"
+            "https://deeeep.io/assets/skins/custom/259-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
@@ -2391,6 +2404,19 @@ chrome.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://deeeep.io/assets/skins/custom/203-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: bronzewhaler};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/1068-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
