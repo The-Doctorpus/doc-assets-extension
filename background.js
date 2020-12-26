@@ -218,6 +218,7 @@ var voltaeel = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/
 var redeel = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Red%20Electric%20Eel%20(Docassets).png"
 var northernelephantseal = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Northern%20Elephant%20Seal%20(Docassets).png"
 var grayelephantseal = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Gray%20Elephant%20Seal%20(Docassets).png"
+var sunburntwalrus = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Sunburnt%20Walrus%20(Docassets).png"
 var sandbarshark = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Sandbar%20Shark%20(Docassets).png"
 
 var southerncavefish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Southern%20Cavefish%20(Docassets).png"
@@ -2435,6 +2436,19 @@ chrome.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://deeeep.io/assets/skins/custom/259-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: sunburntwalrus};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/1450-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
