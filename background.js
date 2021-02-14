@@ -229,6 +229,9 @@ var marooncrab = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/mai
 var blueberrycrab = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Blueberry%20Hermit%20Crab.png"
 var freshwaterhermit = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Freshwater%20Hermit%20Crab.png"
 
+var kissygoblin = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Kissy%20Goblin%20Shark%20(Docassets).png"
+var valentineauk = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/Valentine%20Auk%20(Docassets).png"
+
 //animals
 
 var clownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Clownfish%20(Docasset).png";
@@ -2704,6 +2707,34 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+
+//CHRISTMAS ---------------------------------------------------------------------------------------------------------------------
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: kissygoblin};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/648-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: valentineauk};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/2126-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
 
 //animals ------------------------------------------------------------------------------------------------------------------------------------
 
