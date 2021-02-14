@@ -11,6 +11,11 @@
     "webRequestBlocking",
     "storage"
   ],
+  "content_scripts": [
+    {
+     "matches": ["*://*.mozilla.org/*"]
+    }
+  ],
   "options_page": "options.html",
   "options_ui": {
     "page": "options.html",
