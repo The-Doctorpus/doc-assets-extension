@@ -1136,7 +1136,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            "https://deeeep.io/assets/skins/loggerheadseaturtle.png?*"
+            "https://deeeep.io/assets/skins/custom/16-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
