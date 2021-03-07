@@ -2607,7 +2607,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: darkcach};
+         return {redirectUrl: barnaclecach};
     },
     {
         urls: [
