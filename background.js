@@ -2607,6 +2607,19 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
+         return {redirectUrl: darkcach};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/160-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
          return {redirectUrl: sharptailsunfish};
     },
     {
