@@ -245,6 +245,8 @@ var sharptailsunfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-asse
 var whitesunfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/whitesunfish.png"
 var muggercroc = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/muggercrocodile.png"
 var cubancroc = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/cubancrocodile.png"
+var spinetail = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/spinetailmobula.png"
+var oceanicmanta = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/oceanicmanta.png"
 var bluewhalehybrid = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/bluewhalehybrid.png"
 
 //animals
@@ -2649,6 +2651,32 @@ chrome.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://deeeep.io/assets/skins/custom/1140-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: spinetail};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3305-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: oceanicmanta};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3421-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
