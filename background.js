@@ -359,7 +359,7 @@ var LMJ = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/image
 var dragonfly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/dragonfly.png";
 var firefly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/firefly.png";
 
-var shrimp = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/Shrimp%20(Docassets).png";
+var shrimp = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/shrimp.png";
 
 var beach = "https://cdn.discordapp.com/attachments/735586325478113384/762688350946590720/unknown.png";
 var beachunderwater = "";
