@@ -2963,6 +2963,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 //animals ------------------------------------------------------------------------------------------------------------------------------------
 
+/*
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
          return {redirectUrl: clownfish};
@@ -4341,6 +4342,42 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 );
+*/
+
+const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; 
+const CHAR_SCHEME = '*://*.deeeep.io/assets/characters/*'; 
+const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function characterHandler(details) {
+        const m = CHAR_REGEX.exec(details.url); 
+
+        console.log(details.url); 
+
+        let redirectUrl; 
+
+        if (m) {
+            const filename = m.groups.filename; 
+
+            console.log(filename); 
+
+            redirectUrl = CHAR_REDIRECT_TEMPLATE + filename; 
+        } else {
+            redirectUrl = details.url; 
+        } 
+
+        return  {
+            redirectUrl: redirectUrl, 
+        }; 
+    },
+    {
+        urls: [
+            CHAR_SCHEME
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
 
 //terrains
 
