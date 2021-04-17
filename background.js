@@ -3442,7 +3442,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/.png"};
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4652.png"};
     },
     {
         urls: [
