@@ -108,7 +108,7 @@ var streamerfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/m
 var doubletusknarwhal = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/doubletusknarwhal.png";
 var amazonianmanatee = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/amazonianmanatee.png";
 var graymanatee = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/graymanatee.png";
-var boxjelly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/boxjellyfish.png";
+var boxjelly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/64.png";
 var clearfinlionfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/clearfinlionfish.png";
 var southernfrilledshark = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/southernafricanfrilledshark.png";
 var capemantis = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/capemantis.png";
@@ -3048,6 +3048,410 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/145.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/145-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3712.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3712-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3905.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3905-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/222.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/222-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/2203.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/2203-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/356.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/356-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/2664.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/2664-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4315.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4315-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/562.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/562-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4300.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4300-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4712.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4712-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/1199.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/1199-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/1400.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/1400-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3448.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3448-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3462.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3462-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4599.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4599-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/832.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/832-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/1691.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/1691-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3902.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3902-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/2973.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/2973-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4475.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4475-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3399.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3399-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3471.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3471-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/3971.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/3971-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4212.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4212-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4288.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4288-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4590.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4590-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4603.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4603-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4604.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4604-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/4616.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4616-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+         return {redirectUrl: "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/custom/.png"};
+    },
+    {
+        urls: [
+            "https://deeeep.io/assets/skins/custom/4652-*"
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
 //animals ------------------------------------------------------------------------------------------------------------------------------------
 
 /*
