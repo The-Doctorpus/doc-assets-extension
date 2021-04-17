@@ -809,7 +809,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            "https://deeeep.io/assets/skins/austinbluesalamander.png?*"
+            "https://deeeep.io/assets/skins/custom/34-*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
