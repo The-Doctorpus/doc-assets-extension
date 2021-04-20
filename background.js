@@ -4869,6 +4869,42 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 ); 
+/*
+const CHAR_REDIRECT_TEMPLATE2 = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; 
+const CHAR_SCHEME2 = '*://*.deeeep.io/assets/skins/*'; 
+const CHAR_REGEX2 = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function characterHandler(details) {
+        const m = CHAR_REGEX2.exec(details.url); 
+
+        console.log(details.url); 
+
+        let redirectUrl; 
+
+        if (m) {
+            const filename = m.groups.filename; 
+
+            console.log(filename); 
+
+            redirectUrl = CHAR_REDIRECT_TEMPLATE2 + filename; 
+        } else {
+            redirectUrl = details.url; 
+        } 
+
+        return  {
+            redirectUrl: redirectUrl, 
+        }; 
+    },
+    {
+        urls: [
+            CHAR_SCHEME2
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
+*/
 
 //terrains
 
