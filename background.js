@@ -64,6 +64,7 @@ var slowblast = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main
 var sonar = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/animations/sonicblast.png";
 var aura = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/animations/aura.png";
 
+/*
 //skins
 
 var earthworm = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/earthworm.png";
@@ -255,7 +256,9 @@ var flowerjelly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/ma
 var hiveshoecrab = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/4429.png"
 var floweraxo = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/4167.png"
 var easterpelican = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skins/3750.png"
+*/
 
+/*
 //animals
 
 var clownfish = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/clownfish.png";
@@ -367,6 +370,7 @@ var dragonfly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main
 var firefly = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/firefly.png";
 
 var shrimp = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/shrimp.png";
+*/
 
 var beach = "https://cdn.discordapp.com/attachments/735586325478113384/762688350946590720/unknown.png";
 var beachunderwater = "";
@@ -671,6 +675,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+/*
 //skins--------------------------------------------------------------------------------------------------------------------------------------------
 
 chrome.webRequest.onBeforeRequest.addListener(
@@ -3452,6 +3457,9 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 );
+
+*/
+
 //animals ------------------------------------------------------------------------------------------------------------------------------------
 
 /*
@@ -4869,25 +4877,33 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 ); 
-/*
-const CHAR_REDIRECT_TEMPLATE2 = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; 
-const CHAR_SCHEME2 = '*://*.deeeep.io/assets/skins/*'; 
-const CHAR_REGEX2 = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/
+
+
+const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; 
+const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; 
+const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/
+const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9]+)?\.(?<suffix>[a-zA-Z0-9]+))/
 
 chrome.webRequest.onBeforeRequest.addListener(
     function characterHandler(details) {
-        const m = CHAR_REGEX2.exec(details.url); 
+        const m = SKIN_REGEX.exec(details.url); 
 
         console.log(details.url); 
 
         let redirectUrl; 
 
         if (m) {
-            const filename = m.groups.filename; 
+            let filename = m.groups.filename; 
 
+            const m2 = CUSTOM_REGEX.exec(filename); 
+
+            if (m2) {
+                filename = m2.groups.pre_version + m2.groups.post_version; 
+            } 
+            
             console.log(filename); 
 
-            redirectUrl = CHAR_REDIRECT_TEMPLATE2 + filename; 
+            redirectUrl = SKIN_REDIRECT_TEMPLATE + filename; 
         } else {
             redirectUrl = details.url; 
         } 
@@ -4898,13 +4914,12 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     {
         urls: [
-            CHAR_SCHEME2
+            SKIN_SCHEME
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
     ["blocking"]
 ); 
-*/
 
 //terrains
 
