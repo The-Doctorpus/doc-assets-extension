@@ -4882,7 +4882,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; 
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; 
 const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/
-const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9]+)?\.(?<suffix>[a-zA-Z0-9]+))/
+const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-]+)?\.(?<suffix>[a-zA-Z0-9]+))/
 
 chrome.webRequest.onBeforeRequest.addListener(
     function characterHandler(details) {
