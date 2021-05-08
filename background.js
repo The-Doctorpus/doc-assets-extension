@@ -4851,7 +4851,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     function characterHandler(details) {
         const m = CHAR_REGEX.exec(details.url); 
 
-        console.log(details.url); 
+        console.log(`original character URL is ${details.url}`); 
 
         let redirectUrl; 
 
@@ -4888,7 +4888,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     function skinHandler(details) {
         const m = SKIN_REGEX.exec(details.url); 
 
-        console.log(`(new version) URL is ${details.url}`); 
+        console.log(`original skin URL is ${details.url}`); 
 
         let redirectUrl = details.url; 
 
