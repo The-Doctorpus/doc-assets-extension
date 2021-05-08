@@ -4843,13 +4843,13 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 */
 
-const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; 
-const CHAR_SCHEME = '*://*.deeeep.io/assets/characters/*'; 
-const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/
+const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
+const CHAR_SCHEME = '*://*.deeeep.io/assets/characters/*'; // these urls will be redirected like characters
+const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
 
 chrome.webRequest.onBeforeRequest.addListener(
     function characterHandler(details) {
-        const m = CHAR_REGEX.exec(details.url); 
+        const m = CHAR_REGEX.exec(details.url); // checks if might be valid character
 
         console.log(`original character URL is ${details.url}`); 
 
@@ -4860,9 +4860,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 
             console.log(filename); 
 
-            redirectUrl = CHAR_REDIRECT_TEMPLATE + filename; 
+            redirectUrl = CHAR_REDIRECT_TEMPLATE + filename; // redirect it
         } else {
-            redirectUrl = details.url; 
+            redirectUrl = details.url; // fall back to default
         } 
 
         return  {
@@ -4879,14 +4879,15 @@ chrome.webRequest.onBeforeRequest.addListener(
 ); 
 
 
-const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; 
-const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; 
-const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/
+const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; // redirect URLs are all from this
+const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
+const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid skin? 
 const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-]+)?\.(?<suffix>[a-zA-Z0-9]+))/
+// skins submitted through Creators Center have a special scheme and must be stripped of their version number
 
 chrome.webRequest.onBeforeRequest.addListener(
     function skinHandler(details) {
-        const m = SKIN_REGEX.exec(details.url); 
+        const m = SKIN_REGEX.exec(details.url); // checks if might be valid skin
 
         console.log(`original skin URL is ${details.url}`); 
 
@@ -4895,22 +4896,22 @@ chrome.webRequest.onBeforeRequest.addListener(
         if (m) {
             let filename = m.groups.filename; 
 
-            const m2 = CUSTOM_REGEX.exec(filename); 
+            const m2 = CUSTOM_REGEX.exec(filename); // checks if might be Creators Center skin
 
             if (m2) {
-                filename = m2.groups.pre_version + m2.groups.post_version; 
+                filename = m2.groups.pre_version + m2.groups.post_version; // ignoring the version number
             } 
             
             console.log(filename); 
 
-            newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; 
+            newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; // builds redirect URL
 
-            let checkRequest = new XMLHttpRequest(); 
+            let checkRequest = new XMLHttpRequest(); // creates HTTP request
 
-            checkRequest.open('GET', newRedirectUrl, false); 
-            checkRequest.send(); 
+            checkRequest.open('GET', newRedirectUrl, false); // sets up request
+            checkRequest.send(); // sends the request
 
-            if (checkRequest.status >= 200 && checkRequest.status < 300) {
+            if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
                 redirectUrl = newRedirectUrl; 
 
                 console.log(`Redirecting to ${newRedirectUrl}`); 
