@@ -4882,7 +4882,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
 const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid skin? 
-const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-]+)?\.(?<suffix>[a-zA-Z0-9]+))/
+const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?\.(?<suffix>[a-zA-Z0-9]+))/
 // skins submitted through Creators Center have a special scheme and must be stripped of their version number
 
 chrome.webRequest.onBeforeRequest.addListener(
