@@ -4885,12 +4885,12 @@ const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/
 const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-]+)?\.(?<suffix>[a-zA-Z0-9]+))/
 
 chrome.webRequest.onBeforeRequest.addListener(
-    function characterHandler(details) {
+    function skinHandler(details) {
         const m = SKIN_REGEX.exec(details.url); 
 
-        console.log(details.url); 
+        console.log(`(new version) URL is ${details.url}`); 
 
-        let redirectUrl; 
+        let redirectUrl = details.url; 
 
         if (m) {
             let filename = m.groups.filename; 
@@ -4903,9 +4903,20 @@ chrome.webRequest.onBeforeRequest.addListener(
             
             console.log(filename); 
 
-            redirectUrl = SKIN_REDIRECT_TEMPLATE + filename; 
-        } else {
-            redirectUrl = details.url; 
+            newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; 
+
+            let checkRequest = new XMLHttpRequest(); 
+
+            checkRequest.open('GET', newRedirectUrl, false); 
+            checkRequest.send(); 
+
+            if (checkRequest.status >= 200 && checkRequest.status < 300) {
+                redirectUrl = newRedirectUrl; 
+
+                console.log(`Redirecting to ${newRedirectUrl}`); 
+            } else {
+                console.log(`${newRedirectUrl} does not exist. Using default.`); 
+            }
         } 
 
         return  {
