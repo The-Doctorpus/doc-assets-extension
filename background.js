@@ -413,52 +413,6 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
-const CHAR_SCHEME = '*://*.deeeep.io/assets/characters/*'; // these urls will be redirected like characters
-const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
-
-chrome.webRequest.onBeforeRequest.addListener(
-    function characterHandler(details) {
-        const m = CHAR_REGEX.exec(details.url); // checks if might be valid character
-
-        console.log(`original character URL is ${details.url}`); 
-
-        let redirectUrl = details.url; 
-
-        if (m) {
-            const filename = m.groups.filename; 
-
-            console.log(filename); 
-
-            let newRedirectUrl = CHAR_REDIRECT_TEMPLATE + filename; // redirect it
-
-            let checkRequest = new XMLHttpRequest(); // creates HTTP request
-
-            checkRequest.open('GET', newRedirectUrl, false); // sets up request
-            checkRequest.send(); // sends the request
-
-            if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
-                redirectUrl = newRedirectUrl; 
-
-                console.log(`Redirecting to ${newRedirectUrl}`); 
-            } else {
-                console.log(`${newRedirectUrl} does not exist. Using default.`); 
-            }
-        } 
-
-        return  {
-            redirectUrl: redirectUrl, 
-        }; 
-    },
-    {
-        urls: [
-            CHAR_SCHEME
-        ],
-        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
-    },
-    ["blocking"]
-); 
-
 
 const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
