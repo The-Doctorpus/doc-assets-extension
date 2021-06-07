@@ -368,7 +368,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 
 const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
-const CHAR_SCHEME = '*://*.deeeep.io/assets/characters/*'; // these urls will be redirected like characters
+const CHAR_SCHEME = '*://*.deeeep.io/*assets/characters/*'; // these urls will be redirected like characters
 const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
 
 chrome.webRequest.onBeforeRequest.addListener(
