@@ -169,6 +169,8 @@ chrome.webRequest.onBeforeRequest.addListener(
         ["blocking"]
     );
 
+    /*
+
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
             var assetUrl = options.Halloween ? seasonalassetsfood : assetsfood; 
@@ -279,6 +281,8 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 );
+
+*/
 
 /*
 
