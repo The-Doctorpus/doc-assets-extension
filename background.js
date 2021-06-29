@@ -450,7 +450,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://github.com/The-Doctorpus/doc-assets/tree/main/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
+const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
 const MAP_SPRITESHEET_SCHEME = '*://*.deeeep.io/mapmaker/assets/packs/*'; // these urls will be redirected like map spritesheets
 const MAP_SPRITESHEET_REGEX = /.+\/packs\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid map spritesheet? 
 
