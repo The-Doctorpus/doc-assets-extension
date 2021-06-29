@@ -301,6 +301,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 */
 
+/*
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
          return {redirectUrl: absorb};
@@ -379,6 +380,8 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+*/
+
 function genericHandler(redirectTemplate, regex, name) {
     function handler(details) {
         const m = regex.exec(details.url); // checks if might be valid X
@@ -415,6 +418,23 @@ function genericHandler(redirectTemplate, regex, name) {
 
     return handler; 
 }
+
+const ANIMATION_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/animations/'; // redirect URLs are all from this
+const ANIMATION_SCHEME = '*://*.deeeep.io/assets/animations/*'; // these urls will be redirected like animations
+const ANIMATION_REGEX = /.+\/animations\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid animation? 
+
+const animationHandler = genericHandler(ANIMATION_REDIRECT_TEMPLATE, ANIMATION_REGEX, 'animation'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    animationHandler, 
+    {
+        urls: [
+            ANIMATION_SCHEME
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
 
 const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
 const CHAR_SCHEME = '*://*.deeeep.io/*assets/characters/*'; // these urls will be redirected like characters
