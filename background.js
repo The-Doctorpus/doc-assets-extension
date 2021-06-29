@@ -93,6 +93,8 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 );
+
+/*
 //assets
 
 chrome.webRequest.onBeforeRequest.addListener(
@@ -150,6 +152,8 @@ chrome.webRequest.onBeforeRequest.addListener(
         },
         ["blocking"]
     );
+
+    */
 
     chrome.webRequest.onBeforeRequest.addListener(
         function(details) {
@@ -276,6 +280,8 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
+/*
+
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
          return {redirectUrl: pdassets};
@@ -288,6 +294,8 @@ chrome.webRequest.onBeforeRequest.addListener(
     },
     ["blocking"]
 );
+
+*/
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
@@ -367,15 +375,11 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
-const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
-const CHAR_SCHEME = '*://*.deeeep.io/*assets/characters/*'; // these urls will be redirected like characters
-const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
+function genericHandler(redirectTemplate, regex, name) {
+    function handler(details) {
+        const m = regex.exec(details.url); // checks if might be valid X
 
-chrome.webRequest.onBeforeRequest.addListener(
-    function characterHandler(details) {
-        const m = CHAR_REGEX.exec(details.url); // checks if might be valid character
-
-        console.log(`original character URL is ${details.url}`); 
+        console.log(`original ${name} URL is ${details.url}`); 
 
         let redirectUrl = details.url; 
 
@@ -384,7 +388,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
             console.log(filename); 
 
-            let newRedirectUrl = CHAR_REDIRECT_TEMPLATE + filename; // redirect it
+            let newRedirectUrl = redirectTemplate + filename; // redirect it
 
             let checkRequest = new XMLHttpRequest(); // creates HTTP request
 
@@ -403,7 +407,19 @@ chrome.webRequest.onBeforeRequest.addListener(
         return  {
             redirectUrl: redirectUrl, 
         }; 
-    },
+    } 
+
+    return handler; 
+}
+
+const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
+const CHAR_SCHEME = '*://*.deeeep.io/*assets/characters/*'; // these urls will be redirected like characters
+const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
+
+const charHandler = genericHandler(CHAR_REDIRECT_TEMPLATE, CHAR_REGEX, 'character'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    charHandler, 
     {
         urls: [
             CHAR_SCHEME
@@ -413,6 +429,39 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
+const SPRITESHEET_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/spritesheets/'; // redirect URLs are all from this
+const SPRITESHEET_SCHEME = '*://*.deeeep.io/assets/spritesheets/*'; // these urls will be redirected like spritesheets
+const SPRITESHEET_REGEX = /.+\/spritesheets\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid spritesheet? 
+
+const spritesheetHandler = genericHandler(SPRITESHEET_REDIRECT_TEMPLATE, SPRITESHEET_REGEX, 'spritesheet'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    spritesheetHandler, 
+    {
+        urls: [
+            SPRITESHEET_SCHEME
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
+
+const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://github.com/The-Doctorpus/doc-assets/tree/main/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
+const MAP_SPRITESHEET_SCHEME = '*://*.deeeep.io/mapmaker/assets/packs/*'; // these urls will be redirected like map spritesheets
+const MAP_SPRITESHEET_REGEX = /.+\/packs\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid map spritesheet? 
+
+const mapSpritesheetHandler = genericHandler(MAP_SPRITESHEET_REDIRECT_TEMPLATE, MAP_SPRITESHEET_REGEX, 'map spritesheet'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    mapSpritesheetHandler, 
+    {
+        urls: [
+            MAP_SPRITESHEET_SCHEME
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
 
 const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
