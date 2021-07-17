@@ -53,8 +53,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-        var assetUrl = options.Halloween ? seasonalbkgr : bkgr; 
-            return {redirectUrl: assetUrl};
+        var assetUrl = bkgr; 
+        
+        return {redirectUrl: assetUrl};
     },
     {
         urls: [
