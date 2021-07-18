@@ -40,7 +40,8 @@ script = 'https://the-doctorpus.github.io/doc-assets/scripts/bundle.js';
   
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: script};
+        
+        return {redirectUrl: script};
     },
     {
         urls: [
