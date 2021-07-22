@@ -1,22 +1,36 @@
 var options = {};
 
+var DEFAULTS = {
+    redirectAssets: true, 
+} 
+
 function setDefaults() {
-    chrome.storage.sync.set({
-      Halloween: true, 
-    }, syncSettings); 
-  } 
+    chrome.storage.sync.get(DEFAULTS, function (obj) {
+        chrome.storage.sync.set(obj, syncSettings); 
+    }); 
+} 
 
 chrome.runtime.onInstalled.addListener(function (info) {
-    if (info.reason == "install") {
-        setDefaults(); 
-    }
+    setDefaults(); 
 }); 
 
 function syncSettings() {
-    chrome.storage.sync.get('Halloween', function (obj) {
+    chrome.storage.sync.get(DEFAULTS, function (obj) {
       Object.assign(options, obj); 
       console.log(options);
+
+      let color = options.redirectAssets ? '#00a04a' : '#bb0000'; 
+      let text = options.redirectAssets ? 'ON' : 'OFF'; 
+
+      chrome.browserAction.setBadgeBackgroundColor({
+          color: color, 
+      }); 
+      chrome.browserAction.setBadgeText({
+          text: text, 
+      }); 
+
     });
+
     console.log("sync settings running");
 }
 
@@ -27,6 +41,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       syncSettings(); 
     } 
 }); 
+
+function toggleRedirect() {
+    options.redirectAssets = !options.redirectAssets; 
+
+    chrome.storage.sync.set(options, syncSettings); 
+}
+
+chrome.browserAction.onClicked.addListener(toggleRedirect); 
 
 //assets
 var bkgr = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/bgimage%20(Docassets).png";
@@ -40,8 +62,9 @@ script = 'https://the-doctorpus.github.io/doc-assets/scripts/bundle.js';
   
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-        
-        return {redirectUrl: script};
+        let url = options.redirectAssets ? script : details.url; 
+
+        return {redirectUrl: url};
     },
     {
         urls: [
@@ -54,7 +77,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-        var assetUrl = bkgr; 
+        var assetUrl = options.redirectAssets ? bkgr : details.url; 
         
         return {redirectUrl: assetUrl};
     },
@@ -69,31 +92,33 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 function genericHandler(redirectTemplate, regex, name) {
     function handler(details) {
-        const m = regex.exec(details.url); // checks if might be valid X
-
-        console.log(`original ${name} URL is ${details.url}`); 
-
         let redirectUrl = details.url; 
 
-        if (m) {
-            const filename = m.groups.filename; 
+        if (options.redirectAssets) {
+            const m = regex.exec(details.url); // checks if might be valid X
 
-            console.log(filename); 
+            console.log(`original ${name} URL is ${details.url}`); 
 
-            let newRedirectUrl = redirectTemplate + filename; // redirect it
+            if (m) {
+                const filename = m.groups.filename; 
 
-            let checkRequest = new XMLHttpRequest(); // creates HTTP request
+                console.log(filename); 
 
-            checkRequest.open('GET', newRedirectUrl, false); // sets up request
-            checkRequest.send(); // sends the request
+                let newRedirectUrl = redirectTemplate + filename; // redirect it
 
-            if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
-                redirectUrl = newRedirectUrl; 
+                let checkRequest = new XMLHttpRequest(); // creates HTTP request
 
-                console.log(`Redirecting to ${newRedirectUrl}`); 
-            } else {
-                console.log(`${newRedirectUrl} does not exist. Using default.`); 
-            }
+                checkRequest.open('GET', newRedirectUrl, false); // sets up request
+                checkRequest.send(); // sends the request
+
+                if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
+                    redirectUrl = newRedirectUrl; 
+
+                    console.log(`Redirecting to ${newRedirectUrl}`); 
+                } else {
+                    console.log(`${newRedirectUrl} does not exist. Using default.`); 
+                }
+            } 
         } 
 
         return  {
@@ -180,37 +205,39 @@ const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9
 
 chrome.webRequest.onBeforeRequest.addListener(
     function skinHandler(details) {
-        const m = SKIN_REGEX.exec(details.url); // checks if might be valid skin
-
-        console.log(`original skin URL is ${details.url}`); 
-
         let redirectUrl = details.url; 
+        
+        if (options.redirectAssets) {
+            const m = SKIN_REGEX.exec(details.url); // checks if might be valid skin
 
-        if (m) {
-            let filename = m.groups.filename; 
+            console.log(`original skin URL is ${details.url}`); 
 
-            const m2 = CUSTOM_REGEX.exec(filename); // checks if might be Creators Center skin
+            if (m) {
+                let filename = m.groups.filename; 
 
-            if (m2) {
-                filename = m2.groups.pre_version + m2.groups.post_version; // ignoring the version number
+                const m2 = CUSTOM_REGEX.exec(filename); // checks if might be Creators Center skin
+
+                if (m2) {
+                    filename = m2.groups.pre_version + m2.groups.post_version; // ignoring the version number
+                } 
+                
+                console.log(filename); 
+
+                newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; // builds redirect URL
+
+                let checkRequest = new XMLHttpRequest(); // creates HTTP request
+
+                checkRequest.open('GET', newRedirectUrl, false); // sets up request
+                checkRequest.send(); // sends the request
+
+                if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
+                    redirectUrl = newRedirectUrl; 
+
+                    console.log(`Redirecting to ${newRedirectUrl}`); 
+                } else {
+                    console.log(`${newRedirectUrl} does not exist. Using default.`); 
+                }
             } 
-            
-            console.log(filename); 
-
-            newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; // builds redirect URL
-
-            let checkRequest = new XMLHttpRequest(); // creates HTTP request
-
-            checkRequest.open('GET', newRedirectUrl, false); // sets up request
-            checkRequest.send(); // sends the request
-
-            if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
-                redirectUrl = newRedirectUrl; 
-
-                console.log(`Redirecting to ${newRedirectUrl}`); 
-            } else {
-                console.log(`${newRedirectUrl} does not exist. Using default.`); 
-            }
         } 
 
         return  {
@@ -228,7 +255,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: clam1};
+        var assetUrl = options.redirectAssets ? clam1 : details.url; 
+
+        return {redirectUrl: assetUrl};
     },
     {
         urls: [
@@ -241,7 +270,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: clam2};
+        var assetUrl = options.redirectAssets ? clam2 : details.url; 
+
+        return {redirectUrl: assetUrl};
     },
     {
         urls: [

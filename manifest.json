@@ -5,6 +5,9 @@
     "version": "1.0.35",
     "icons": {"128": "Docassetsicon.png"},
     "background": {"scripts":["background.js"]},
+    "browser_action": {
+        "default_title": "Click to toggle Doctorpus Assets on/off"
+    }, 
   "permissions": [
     "webRequest",
     "https://deeeep.io/*",
