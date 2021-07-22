@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head><title>My Test Extension Options</title></head>
+<head>
+    <title>Doctorpus Assets Popup</title>
+    <link rel='stylesheet' href='pages.css'>
+</head>
 <body>
 
+<div id='background'>
+    <div id='title'>Doctorpus Assets</div>
 
+    <img id='logo' src='images\Docassetsicon.png'>
 
-<label>
-  Enable Seasonal Skins:
-  <input type="checkbox" id="like">
-  
-</label>
+    <label>
+    Asset Pack
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
+    
+    </label>
 
-<div id="status"></div>
-<button id="save">Save</button>
+    <div id="status"></div>
+    <button id="save">Save</button>
+
+</div>
 
 <script src="options.js"></script>
 </body>
