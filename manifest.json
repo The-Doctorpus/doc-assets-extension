@@ -11,6 +11,7 @@
   "permissions": [
     "webRequest",
     "https://deeeep.io/*",
+    "https://mapmaker.deeeep.io/*",
     "webRequestBlocking",
     "storage"
   ]
