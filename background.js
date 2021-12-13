@@ -51,10 +51,10 @@ function toggleRedirect() {
 chrome.browserAction.onClicked.addListener(toggleRedirect); 
 
 //assets
-var bkgr = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/bgimage%20(Docassets).png";
+var bkgr = "https://the-doctorpus.github.io/doc-assets/images/default/bgimage%20(Docassets).png";
 
-var clam1 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/Pearl%20Shell%20display%20(Docassets).png";
-var clam2 = "https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/Pearl%20Stand%20display%20(Docassets).png";
+var clam1 = "https://the-doctorpus.github.io/doc-assets/images/default/Pearl%20Shell%20display%20(Docassets).png";
+var clam2 = "https://the-doctorpus.github.io/doc-assets/images/default/Pearl%20Stand%20display%20(Docassets).png";
 
 //script
 
@@ -129,7 +129,7 @@ function genericHandler(redirectTemplate, regex, name) {
     return handler; 
 }
 
-const ANIMATION_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/animations/'; // redirect URLs are all from this
+const ANIMATION_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/animations/'; // redirect URLs are all from this
 const ANIMATION_SCHEME = '*://*.deeeep.io/assets/animations/*'; // these urls will be redirected like animations
 const ANIMATION_REGEX = /.+\/animations\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid animation? 
 
@@ -146,7 +146,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-const CHAR_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/characters/'; // redirect URLs are all from this
+const CHAR_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/characters/'; // redirect URLs are all from this
 const CHAR_SCHEME = '*://*.deeeep.io/*assets/characters/*'; // these urls will be redirected like characters
 const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
 
@@ -163,7 +163,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-const SPRITESHEET_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/spritesheets/'; // redirect URLs are all from this
+const SPRITESHEET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/spritesheets/'; // redirect URLs are all from this
 const SPRITESHEET_SCHEME = '*://*.deeeep.io/assets/spritesheets/*'; // these urls will be redirected like spritesheets
 const SPRITESHEET_REGEX = /.+\/spritesheets\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid spritesheet? 
 
@@ -180,7 +180,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
+const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
 const MAP_SPRITESHEET_SCHEME = '*://*.deeeep.io/mapmaker/assets/packs/*'; // these urls will be redirected like map spritesheets
 const MAP_SPRITESHEET_REGEX = /.+\/packs\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid map spritesheet? 
 
@@ -197,7 +197,24 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-const SKIN_REDIRECT_TEMPLATE = 'https://raw.githubusercontent.com/The-Doctorpus/doc-assets/main/images/skans/'; // redirect URLs are all from this
+const PET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/custom/pets/';
+const PET_SCHEME = '*://*.deeeep.io/custom/pets/*'
+const PET_REGEX = /.+\/pets\/(?<filename>.+?)(?:\?.*)?$/
+
+const petHandler = genericHandler(PET_REDIRECT_TEMPLATE, PET_REGEX, 'pet'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    petHandler, 
+    {
+        urls: [
+            PET_SCHEME
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
+
+const SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
 const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid skin? 
 const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?\.(?<suffix>[a-zA-Z0-9]+))/
