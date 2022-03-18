@@ -197,6 +197,23 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
+const IMG_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/img/'; // redirect URLs are all from this
+const IMG_SCHEME = '*://*.deeeep.io/img/*'; // these urls will be redirected like ui sprites
+const IMG_REGEX = /.+\/img\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid ui sprite? 
+
+const imgSpriteHandler = genericHandler(IMG_REDIRECT_TEMPLATE, IMG_REGEX, 'img spritesheet'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    imgSpriteHandler, 
+    {
+        urls: [
+            IMG_SCHEME
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+); 
+
 const PET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/custom/pets/';
 const PET_SCHEME = '*://*.deeeep.io/custom/pets/*'
 const PET_REGEX = /.+\/pets\/(?<filename>.+?)(?:\?.*)?$/
