@@ -50,12 +50,6 @@ function toggleRedirect() {
 
 chrome.browserAction.onClicked.addListener(toggleRedirect); 
 
-//assets
-var bkgr = "https://the-doctorpus.github.io/doc-assets/images/default/bgimage%20(Docassets).png";
-
-var clam1 = "https://the-doctorpus.github.io/doc-assets/images/default/Pearl%20Shell%20display%20(Docassets).png";
-var clam2 = "https://the-doctorpus.github.io/doc-assets/images/default/Pearl%20Stand%20display%20(Docassets).png";
-
 //script
 
 script = 'https://the-doctorpus.github.io/doc-assets/scripts/bundle.js';
@@ -69,21 +63,6 @@ chrome.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://deeeep.io/bundle.js?*"
-        ],
-        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
-    },
-    ["blocking"]
-);
-
-chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-        var assetUrl = options.redirectAssets ? bkgr : details.url; 
-        
-        return {redirectUrl: assetUrl};
-    },
-    {
-        urls: [
-            "https://deeeep.io/assets/bgimage.png?*"
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
@@ -131,7 +110,7 @@ function genericHandler(redirectTemplate, regex, name) {
 
 const ANIMATION_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/animations/'; // redirect URLs are all from this
 const ANIMATION_SCHEME = '*://*.deeeep.io/assets/animations/*'; // these urls will be redirected like animations
-const ANIMATION_REGEX = /.+\/animations\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid animation? 
+const ANIMATION_REGEX = /.+\/animations\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid animation? 
 
 const animationHandler = genericHandler(ANIMATION_REDIRECT_TEMPLATE, ANIMATION_REGEX, 'animation'); 
 
@@ -148,7 +127,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 const CHAR_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/characters/'; // redirect URLs are all from this
 const CHAR_SCHEME = '*://*.deeeep.io/*assets/characters/*'; // these urls will be redirected like characters
-const CHAR_REGEX = /.+\/characters\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid character? 
+const CHAR_REGEX = /.+\/characters\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid character? 
 
 const charHandler = genericHandler(CHAR_REDIRECT_TEMPLATE, CHAR_REGEX, 'character'); 
 
@@ -165,7 +144,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 const SPRITESHEET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/spritesheets/'; // redirect URLs are all from this
 const SPRITESHEET_SCHEME = '*://*.deeeep.io/assets/spritesheets/*'; // these urls will be redirected like spritesheets
-const SPRITESHEET_REGEX = /.+\/spritesheets\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid spritesheet? 
+const SPRITESHEET_REGEX = /.+\/spritesheets\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid spritesheet? 
 
 const spritesheetHandler = genericHandler(SPRITESHEET_REDIRECT_TEMPLATE, SPRITESHEET_REGEX, 'spritesheet'); 
 
@@ -182,7 +161,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
 const MAP_SPRITESHEET_SCHEME = '*://*.deeeep.io/mapmaker/assets/packs/*'; // these urls will be redirected like map spritesheets
-const MAP_SPRITESHEET_REGEX = /.+\/packs\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid map spritesheet? 
+const MAP_SPRITESHEET_REGEX = /.+\/packs\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid map spritesheet? 
 
 const mapSpritesheetHandler = genericHandler(MAP_SPRITESHEET_REDIRECT_TEMPLATE, MAP_SPRITESHEET_REGEX, 'map spritesheet'); 
 
@@ -199,7 +178,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 const IMG_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/img/'; // redirect URLs are all from this
 const IMG_SCHEME = '*://*.deeeep.io/img/*'; // these urls will be redirected like ui sprites
-const IMG_REGEX = /.+\/img\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid ui sprite? 
+const IMG_REGEX = /.+\/img\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid ui sprite? 
 
 const imgSpriteHandler = genericHandler(IMG_REDIRECT_TEMPLATE, IMG_REGEX, 'img spritesheet'); 
 
@@ -216,7 +195,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 const PET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/custom/pets/';
 const PET_SCHEME = '*://*.deeeep.io/custom/pets/*'
-const PET_REGEX = /.+\/pets\/(?<filename>.+?)(?:\?.*)?$/
+const PET_REGEX = /.+\/pets\/(?<filename>[^?]+)(?:\?.*)?$/
 
 const petHandler = genericHandler(PET_REDIRECT_TEMPLATE, PET_REGEX, 'pet'); 
 
@@ -233,7 +212,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 const SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
-const SKIN_REGEX = /.+\/skins\/(?<filename>.+?)(?:\?.*)?$/ // might it be a valid skin? 
+const SKIN_REGEX = /.+\/skins\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid skin? 
 const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?\.(?<suffix>[a-zA-Z0-9]+))/
 // skins submitted through Creators Center have a special scheme and must be stripped of their version number
 
@@ -287,32 +266,19 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 ); 
 
-chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-        var assetUrl = options.redirectAssets ? clam1 : details.url; 
+const MISC_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/misc/'; // redirect URLs are all from this
+const MISC_SCHEME = '*://*.deeeep.io/assets/*'; // these urls will be redirected like ui sprites
+const MISC_REGEX = /.+\/assets\/(?<filename>[^/?]+)(?:\?.*)?$/ // might it be a valid ui sprite? 
 
-        return {redirectUrl: assetUrl};
-    },
+const miscHandler = genericHandler(MISC_REDIRECT_TEMPLATE, MISC_SCHEME, 'misc'); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    miscHandler, 
     {
         urls: [
-            "https://deeeep.io/assets/pearl_cover.png"
+            MISC_SCHEME
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
     ["blocking"]
-);
-
-chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-        var assetUrl = options.redirectAssets ? clam2 : details.url; 
-
-        return {redirectUrl: assetUrl};
-    },
-    {
-        urls: [
-            "https://deeeep.io/assets/pearl_stand_only.png"
-        ],
-        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
-    },
-    ["blocking"]
-);
+); 
