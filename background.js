@@ -270,7 +270,7 @@ const MISC_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/image
 const MISC_SCHEME = '*://*.deeeep.io/assets/*'; // these urls will be redirected like ui sprites
 const MISC_REGEX = /.+\/assets\/(?<filename>[^/?]+)(?:\?.*)?$/ // might it be a valid ui sprite? 
 
-const miscHandler = genericHandler(MISC_REDIRECT_TEMPLATE, MISC_SCHEME, 'misc'); 
+const miscHandler = genericHandler(MISC_REDIRECT_TEMPLATE, MISC_REGEX, 'misc'); 
 
 chrome.webRequest.onBeforeRequest.addListener(
     miscHandler, 
