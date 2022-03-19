@@ -53,6 +53,20 @@ chrome.browserAction.onClicked.addListener(toggleRedirect);
 //script
 
 script = 'https://the-doctorpus.github.io/doc-assets/scripts/bundle.js';
+
+const alreadyChecked = new Set();
+
+function tempMarkChecked(toAdd) {
+    alreadyChecked.add(toAdd);
+
+    console.log(`${toAdd} temp-added to checked list`); 
+
+    setTimeout(function(toRemove) {
+        alreadyChecked.delete(toRemove);
+
+        console.log(`${toRemove} removed from checked list`); 
+    }, 5000, toAdd);
+}
   
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
@@ -72,7 +86,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 function genericHandler(redirectTemplate, regex, name) {
     function handler(details) {
         let redirectUrl = details.url; 
-
+        
         if (options.redirectAssets) {
             const m = regex.exec(details.url); // checks if might be valid X
 
@@ -85,20 +99,26 @@ function genericHandler(redirectTemplate, regex, name) {
 
                 let newRedirectUrl = redirectTemplate + filename; // redirect it
 
-                let checkRequest = new XMLHttpRequest(); // creates HTTP request
+                if (!alreadyChecked.has(newRedirectUrl)) {
+                    let checkRequest = new XMLHttpRequest(); // creates HTTP request
 
-                checkRequest.open('GET', newRedirectUrl, false); // sets up request
-                checkRequest.send(); // sends the request
+                    checkRequest.open('GET', newRedirectUrl, false); // sets up request
+                    checkRequest.send(); // sends the request
 
-                if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
-                    redirectUrl = newRedirectUrl; 
+                    if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
+                        redirectUrl = newRedirectUrl; 
 
-                    console.log(`Redirecting to ${newRedirectUrl}`); 
+                        console.log(`Redirecting to ${newRedirectUrl}`); 
+                    } else {
+                        tempMarkChecked(newRedirectUrl);
+
+                        console.log(`${newRedirectUrl} does not exist. Using default.`); 
+                    }
                 } else {
-                    console.log(`${newRedirectUrl} does not exist. Using default.`); 
+                    console.log(`Already checked ${newRedirectUrl}`); 
                 }
             } 
-        } 
+        }
 
         return  {
             redirectUrl: redirectUrl, 
@@ -238,17 +258,23 @@ chrome.webRequest.onBeforeRequest.addListener(
 
                 newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; // builds redirect URL
 
-                let checkRequest = new XMLHttpRequest(); // creates HTTP request
+                if (!alreadyChecked.has(newRedirectUrl)) {
+                    let checkRequest = new XMLHttpRequest(); // creates HTTP request
 
-                checkRequest.open('GET', newRedirectUrl, false); // sets up request
-                checkRequest.send(); // sends the request
+                    checkRequest.open('GET', newRedirectUrl, false); // sets up request
+                    checkRequest.send(); // sends the request
 
-                if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
-                    redirectUrl = newRedirectUrl; 
+                    if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
+                        redirectUrl = newRedirectUrl; 
 
-                    console.log(`Redirecting to ${newRedirectUrl}`); 
+                        console.log(`Redirecting to ${newRedirectUrl}`); 
+                    } else {
+                        tempMarkChecked(newRedirectUrl);
+
+                        console.log(`${newRedirectUrl} does not exist. Using default.`); 
+                    }
                 } else {
-                    console.log(`${newRedirectUrl} does not exist. Using default.`); 
+                    console.log(`Already checked ${newRedirectUrl}`); 
                 }
             } 
         } 
