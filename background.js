@@ -232,18 +232,18 @@ chrome.webRequest.onBeforeRequest.addListener(
 ); 
 
 const SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/'; // redirect URLs are all from this
-const CUSTOM_SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/custom/'; // redirect URLs are all from this
+const CDN_SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/custom/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
-const CUSTOM_SKIN_SCHEME = '*://cdn.deeeep.io/custom/skins/*';
+const CDN_SKIN_SCHEME = '*://cdn.deeeep.io/custom/skins/*';
 const SKIN_REGEX = /.+\/skins\/(?<filename>[^?]+)(?:\?.*)?$/; // might it be a valid skin? 
-const CUSTOM_REGEX = /skins\/(?:(?<skin_name>[A-Za-z]+)|(?:(?<skin_id>[0-9]+)(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?)))(?<suffix>\.[a-zA-Z0-9]+)/;
+const CDN_REGEX = /skins\/(?:(?<skin_name>[A-Za-z]+)|(?:(?<skin_id>[0-9]+)(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?)))(?<suffix>\.[a-zA-Z0-9]+)/;
 // skins submitted through Creators Center have a special scheme and must be stripped of their version number
 
-const nonCCSkinHandler = genericHandler(SKIN_REDIRECT_TEMPLATE, SKIN_REGEX, 'non-CC skin');
-const CCSkinHandler = genericHandler(CUSTOM_SKIN_REDIRECT_TEMPLATE, CUSTOM_REGEX, 'CC skin', ['skin_name', 'skin_id', 'post_version', 'suffix']);
+const nonCDNSkinHandler = genericHandler(SKIN_REDIRECT_TEMPLATE, SKIN_REGEX, 'non-CDN skin');
+const CDNSkinHandler = genericHandler(CDN_SKIN_REDIRECT_TEMPLATE, CDN_REGEX, 'CDN skin', ['skin_name', 'skin_id', 'post_version', 'suffix']);
 
 chrome.webRequest.onBeforeRequest.addListener(
-    nonCCSkinHandler,
+    nonCDNSkinHandler,
     {
         urls: [
             SKIN_SCHEME,
@@ -254,10 +254,10 @@ chrome.webRequest.onBeforeRequest.addListener(
 ); 
 
 chrome.webRequest.onBeforeRequest.addListener(
-    CCSkinHandler,
+    CDNSkinHandler,
     {
         urls: [
-            CUSTOM_SKIN_SCHEME,
+            CDN_SKIN_SCHEME,
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
