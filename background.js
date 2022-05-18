@@ -83,7 +83,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
-function genericHandler(redirectTemplate, regex, name) {
+function genericHandler(redirectTemplate, regex, name, filenameKeys=['filename']) {
     function handler(details) {
         let redirectUrl = details.url; 
         
@@ -93,7 +93,8 @@ function genericHandler(redirectTemplate, regex, name) {
             console.log(`original ${name} URL is ${details.url}`); 
 
             if (m) {
-                const filename = m.groups.filename; 
+                const filenameArray = filenameKeys.map(key => m.groups[key] || '');
+                const filename = filenameArray.join('');
 
                 console.log(filename); 
 
@@ -231,66 +232,37 @@ chrome.webRequest.onBeforeRequest.addListener(
 ); 
 
 const SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/'; // redirect URLs are all from this
+const CUSTOM_SKIN_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/skans/custom/'; // redirect URLs are all from this
 const SKIN_SCHEME = '*://*.deeeep.io/assets/skins/*'; // these urls will be redirected like skins
-const SKIN_REGEX = /.+\/skins\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid skin? 
-const CUSTOM_REGEX = /(?<pre_version>custom\/(?<skin_id>[0-9]+))(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?\.(?<suffix>[a-zA-Z0-9]+))/
+const CUSTOM_SKIN_SCHEME = '*://cdn.deeeep.io/custom/skins/*';
+const SKIN_REGEX = /.+\/skins\/(?<filename>[^?]+)(?:\?.*)?$/; // might it be a valid skin? 
+const CUSTOM_REGEX = /skins\/(?:(?<skin_name>[A-Za-z]+)|(?:(?<skin_id>[0-9]+)(?<version>-[0-9]+)(?<post_version>(?<extra_asset_name>-[A-Za-z0-9-_]+)?)))(?<suffix>\.[a-zA-Z0-9]+)/;
 // skins submitted through Creators Center have a special scheme and must be stripped of their version number
 
+const nonCCSkinHandler = genericHandler(SKIN_REDIRECT_TEMPLATE, SKIN_REGEX, 'non-CC skin');
+const CCSkinHandler = genericHandler(CUSTOM_SKIN_REDIRECT_TEMPLATE, CUSTOM_REGEX, 'CC skin', ['skin_name', 'skin_id', 'post_version', 'suffix']);
+
 chrome.webRequest.onBeforeRequest.addListener(
-    function skinHandler(details) {
-        let redirectUrl = details.url; 
-        
-        if (options.redirectAssets) {
-            const m = SKIN_REGEX.exec(details.url); // checks if might be valid skin
-
-            console.log(`original skin URL is ${details.url}`); 
-
-            if (m) {
-                let filename = m.groups.filename; 
-
-                const m2 = CUSTOM_REGEX.exec(filename); // checks if might be Creators Center skin
-
-                if (m2) {
-                    filename = m2.groups.pre_version + m2.groups.post_version; // ignoring the version number
-                } 
-                
-                console.log(filename); 
-
-                newRedirectUrl = SKIN_REDIRECT_TEMPLATE + filename; // builds redirect URL
-
-                if (!alreadyChecked.has(newRedirectUrl)) {
-                    let checkRequest = new XMLHttpRequest(); // creates HTTP request
-
-                    checkRequest.open('GET', newRedirectUrl, false); // sets up request
-                    checkRequest.send(); // sends the request
-
-                    if (checkRequest.status >= 200 && checkRequest.status < 300) { // redirect exists
-                        redirectUrl = newRedirectUrl; 
-
-                        console.log(`Redirecting to ${newRedirectUrl}`); 
-                    } else {
-                        tempMarkChecked(newRedirectUrl);
-
-                        console.log(`${newRedirectUrl} does not exist. Using default.`); 
-                    }
-                } else {
-                    console.log(`Already checked ${newRedirectUrl}`); 
-                }
-            } 
-        } 
-
-        return  {
-            redirectUrl: redirectUrl, 
-        }; 
-    },
+    nonCCSkinHandler,
     {
         urls: [
-            SKIN_SCHEME
+            SKIN_SCHEME,
         ],
         types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
     },
     ["blocking"]
 ); 
+
+chrome.webRequest.onBeforeRequest.addListener(
+    CCSkinHandler,
+    {
+        urls: [
+            CUSTOM_SKIN_SCHEME,
+        ],
+        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+    },
+    ["blocking"]
+);
 
 const MISC_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/misc/'; // redirect URLs are all from this
 const MISC_SCHEME = '*://*.deeeep.io/assets/*'; // these urls will be redirected like ui sprites
