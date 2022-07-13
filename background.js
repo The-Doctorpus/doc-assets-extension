@@ -181,7 +181,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 ); 
 
 const MAP_SPRITESHEET_REDIRECT_TEMPLATE = 'https://the-doctorpus.github.io/doc-assets/images/default/mapmaker-asset-packs/'; // redirect URLs are all from this
-const MAP_SPRITESHEET_SCHEME = '*://*.deeeep.io/mapmaker/assets/packs/*'; // these urls will be redirected like map spritesheets
+const MAP_SPRITESHEET_SCHEME = '*://*.deeeep.io/assets/packs/*'; // these urls will be redirected like map spritesheets
 const MAP_SPRITESHEET_REGEX = /.+\/packs\/(?<filename>[^?]+)(?:\?.*)?$/ // might it be a valid map spritesheet? 
 
 const mapSpritesheetHandler = genericHandler(MAP_SPRITESHEET_REDIRECT_TEMPLATE, MAP_SPRITESHEET_REGEX, 'map spritesheet'); 
