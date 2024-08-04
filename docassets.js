@@ -93,10 +93,6 @@ console.log(
 	}),
 );
 
-// Make a backup of the original fetch function.
-// We will modify it later.
-const originalFetch = fetch;
-
 // Some assets may be requested multiple times.
 // We do not want to have to check if the URL
 // is valid every single time as that would
@@ -213,7 +209,9 @@ Function.prototype.call = function (...args) {
 	return originalFunctionCall.apply(this, args);
 };
 
-// Modify the fetch function.
+// Make a backup of the original fetch function,
+// then modify the fetch function.
+const originalFetch = fetch;
 fetch = async (...args) => {
 	args[0] = createNewUrl(args[0]);
 	const res = await originalFetch.apply(this, args);
