@@ -64,7 +64,34 @@ const REDIRECTS = [
 ];
 
 /**** UTILITY FUNCTIONS ****/
-console.log("Loaded");
+
+// Fancy console log
+const obj2css = (obj) =>
+	Object.entries(obj)
+		.map(
+			([property, value]) =>
+				`${property
+					.split(/(?=[A-Z])/)
+					.join("-")
+					.toLowerCase()}:${value}`,
+		)
+		.join(";");
+
+console.log(
+	"%c✔%cDoctorpus Assets loaded",
+	obj2css({
+		color: "#fff",
+		background: "#10b981",
+		fontSize: "125%",
+		padding: "4px 8px",
+	}),
+	obj2css({
+		color: "#fff",
+		background: "#0b5393",
+		fontSize: "125%",
+		padding: "4px 12px",
+	}),
+);
 
 // Make a backup of the original fetch function.
 // We will modify it later.
