@@ -153,3 +153,23 @@ fetch = (...args) => {
 	args[0] = createNewUrl(args[0]);
 	return originalFetch.apply(this, args);
 };
+
+/**** CUSTOM CSS ****/
+const customCSS = document.createElement("style");
+customCSS.innerHTML = `
+.home-page .home-bg {
+    background-image: url(${BASE_REDIRECT}/images/img/dpbg6.png) !important;
+}   
+.pd-pearl .model__stand {
+    background-image: url(${BASE_REDIRECT}/images/misc/pearl_stand_only.png) !important;
+}
+.pd-pearl .model__cover {
+    background-image: url(${BASE_REDIRECT}/images/misc/pearl_cover.png) !important;
+}
+.loading-container {
+    background-image: url(${BASE_REDIRECT}/images/img/loadingbg.png) !important;
+}
+`;
+window.addEventListener("DOMContentLoaded", () => {
+	document.querySelector("head").append(customCSS);
+});
