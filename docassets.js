@@ -1,81 +1,7 @@
-/**** UTILITY FUNCTIONS ****/
-console.log("Loaded");
+// This content script contains the injector responsible for redirecting assets
 
-// Make a backup of the original fetch function.
-// We will modify it later.
-const originalFetch = fetch;
+/**** REDIRECT RULES ****/
 
-// Some assets may be requested multiple times.
-// We do not want to have to check if the URL
-// is valid every single time as that would
-// waste bandwidth and slow down requests.
-const redirectCache = JSON.parse(localStorage.getItem("redirectCache")) || {};
-const existenceCache = {};
-
-const setRedirectCache = (url, redirectUrl) => {
-	if (redirectUrl == null) {
-		delete redirectCache[url];
-	} else {
-		redirectCache[url] = redirectUrl;
-	}
-	localStorage.setItem("redirectCache", JSON.stringify(redirectCache));
-};
-
-const testUrl = (url) => {
-	if (existenceCache[url] != null) return existenceCache[url];
-
-	// Synchronous GET request
-	const request = new XMLHttpRequest();
-	request.open("GET", url, false);
-	request.send(null);
-	if (request.status >= 200 && request.status < 400) {
-		existenceCache[url] = true;
-		return true;
-	}
-	existenceCache[url] = false;
-	return false;
-};
-
-const createNewUrl = (url_) => {
-	if (url_.startsWith("data:")) return url_;
-
-	const url = url_.startsWith("http")
-		? url_
-		: Object.assign(new URL(url_, location.origin), { search: "" }).toString();
-	let processedUrl = url;
-
-	if (redirectCache[url] != null) {
-		return redirectCache[url];
-	}
-
-	for (const rule of EXCLUSION_REGEX) {
-		if (url.match(rule)) {
-			return url;
-		}
-	}
-
-	let regexMatched = false;
-	for (const rule of REDIRECTS) {
-		if (url.match(rule.regex)) {
-			regexMatched = true;
-			let { filename } = rule.regex.exec(url).groups;
-			if (rule.isCdnSkin)
-				filename = `${filename.split("-")[0]}.${filename.split(".").pop()}`;
-			if (filename) {
-				const newUrl = rule.redirectUrl + filename;
-				const canRedirect = testUrl(newUrl);
-				if (canRedirect) {
-					processedUrl = newUrl;
-				}
-			}
-		}
-		if (regexMatched) break;
-	}
-	setRedirectCache(url, processedUrl);
-	return processedUrl;
-};
-
-// Define redirect rules
 // Base URL
 // TODO: Change this to the official URL
 const BASE_REDIRECT = "https://akanecco23.github.io/doc-assets";
@@ -137,6 +63,100 @@ const REDIRECTS = [
 	},
 ];
 
+/**** UTILITY FUNCTIONS ****/
+console.log("Loaded");
+
+// Make a backup of the original fetch function.
+// We will modify it later.
+const originalFetch = fetch;
+
+// Some assets may be requested multiple times.
+// We do not want to have to check if the URL
+// is valid every single time as that would
+// waste bandwidth and slow down requests.
+const existenceCache = {};
+
+// We can save some time by caching the URL that
+// each original URL redirects to.
+// This is then saved to localStorage to optimize
+// load time in future page loads.
+const redirectCache = JSON.parse(localStorage.getItem("redirectCache")) || {};
+const setRedirectCache = (url, redirectUrl) => {
+	if (redirectUrl == null) {
+		delete redirectCache[url];
+	} else {
+		redirectCache[url] = redirectUrl;
+	}
+	localStorage.setItem("redirectCache", JSON.stringify(redirectCache));
+};
+
+// Synchronously test if a URL exists
+// This is used for determining whether an asset
+// should be redirected or not.
+const testUrl = (url) => {
+	if (existenceCache[url] != null) return existenceCache[url];
+
+	const request = new XMLHttpRequest();
+	request.open("GET", url, false);
+	request.send(null);
+	if (request.status >= 200 && request.status < 400) {
+		existenceCache[url] = true;
+		return true;
+	}
+	existenceCache[url] = false;
+	return false;
+};
+
+// Create a new URL by replacing the original URL
+// with the defined regular expression rules
+const createNewUrl = (url_) => {
+	// If the image is a base64 data URL, just return it
+	if (url_.startsWith("data:")) return url_;
+
+	// If the image is a relative URL,
+	// convert it to an absolute one
+	const url = url_.startsWith("http")
+		? url_
+		: Object.assign(new URL(url_, location.origin), { search: "" }).toString();
+	let processedUrl = url;
+
+	// If the URL is already cached, return it
+	if (redirectCache[url] != null) {
+		return redirectCache[url];
+	}
+
+	// EXLUSION_REGEX defines a list of URLs
+	// that should never be redirected
+	for (const rule of EXCLUSION_REGEX) {
+		if (url.match(rule)) {
+			return url;
+		}
+	}
+
+	// Iterate through the redirect rules
+	// and test if it can be redirected
+	let regexMatched = false;
+	for (const rule of REDIRECTS) {
+		if (url.match(rule.regex)) {
+			regexMatched = true;
+			let { filename } = rule.regex.exec(url).groups;
+			if (rule.isCdnSkin)
+				filename = `${filename.split("-")[0]}.${filename.split(".").pop()}`;
+			if (filename) {
+				const newUrl = rule.redirectUrl + filename;
+				const canRedirect = testUrl(newUrl);
+				if (canRedirect) {
+					processedUrl = newUrl;
+				}
+			}
+		}
+		if (regexMatched) break;
+	}
+	// Cache the result
+	setRedirectCache(url, processedUrl);
+	return processedUrl;
+};
+
 /**** REDIRECTOR ****/
 
 // We need to modify a few function calls
@@ -177,6 +197,9 @@ fetch = async (...args) => {
 };
 
 /**** CUSTOM CSS ****/
+
+// This COULD be done dynamically, but these rules are
+// unlikely to change, therefore we can hardcode them
 const customCSS = document.createElement("style");
 customCSS.innerHTML = `
 .home-page .home-bg {
