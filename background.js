@@ -34,9 +34,11 @@ const updateOptions = () => {
 			},
 		]);
 	} else {
-		chrome.scripting.unregisterContentScripts({
-			ids: ["redirect-script"],
-		});
+		try {
+			chrome.scripting.unregisterContentScripts({
+				ids: ["redirect-script"],
+			});
+		} catch {}
 	}
 };
 
