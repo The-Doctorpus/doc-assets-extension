@@ -10,18 +10,19 @@ const originalFetch = fetch;
 // is valid every single time as that would
 // waste bandwidth and slow down requests.
 const redirectCache = {};
+const existenceCache = {};
 const testUrl = (url) => {
-	if (redirectCache[url] != null) return redirectCache[url];
+	if (existenceCache[url] != null) return existenceCache[url];
 
 	// Synchronous GET request
 	const request = new XMLHttpRequest();
 	request.open("GET", url, false);
 	request.send(null);
 	if (request.status >= 200 && request.status < 400) {
-		redirectCache[url] = true;
+		existenceCache[url] = true;
 		return true;
 	}
-	redirectCache[url] = false;
+	existenceCache[url] = false;
 	return false;
 };
 
@@ -30,6 +31,10 @@ const createNewUrl = (url_) => {
 		? url_
 		: new URL(url_, location.origin).toString();
 	let processedUrl = url;
+
+	if (redirectCache[url] != null) {
+		return redirectCache[url];
+	}
 
 	for (const rule of EXCLUSION_REGEX) {
 		if (url.match(rule)) {
@@ -54,6 +59,7 @@ const createNewUrl = (url_) => {
 		}
 		if (regexMatched) break;
 	}
+	redirectCache[url] = processedUrl;
 	return processedUrl;
 };
 
