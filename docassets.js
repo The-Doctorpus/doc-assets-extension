@@ -9,8 +9,18 @@ const originalFetch = fetch;
 // We do not want to have to check if the URL
 // is valid every single time as that would
 // waste bandwidth and slow down requests.
-const redirectCache = {};
+const redirectCache = JSON.parse(localStorage.getItem("redirectCache")) || {};
 const existenceCache = {};
+
+const setRedirectCache = (url, redirectUrl) => {
+	if (redirectUrl == null) {
+		delete redirectCache[url];
+	} else {
+		redirectCache[url] = redirectUrl;
+	}
+	localStorage.setItem("redirectCache", JSON.stringify(redirectCache));
+};
+
 const testUrl = (url) => {
 	if (existenceCache[url] != null) return existenceCache[url];
 
@@ -27,9 +37,11 @@ const testUrl = (url) => {
 };
 
 const createNewUrl = (url_) => {
+	if (url_.startsWith("data:")) return url_;
+
 	const url = url_.startsWith("http")
 		? url_
-		: new URL(url_, location.origin).toString();
+		: Object.assign(new URL(url_, location.origin), { search: "" }).toString();
 	let processedUrl = url;
 
 	if (redirectCache[url] != null) {
@@ -59,7 +71,7 @@ const createNewUrl = (url_) => {
 		}
 		if (regexMatched) break;
 	}
-	redirectCache[url] = processedUrl;
+	setRedirectCache(url, processedUrl);
 	return processedUrl;
 };
 
@@ -155,9 +167,13 @@ Function.prototype.call = function (...args) {
 };
 
 // Modify the fetch function.
-fetch = (...args) => {
+fetch = async (...args) => {
 	args[0] = createNewUrl(args[0]);
-	return originalFetch.apply(this, args);
+	const res = await originalFetch.apply(this, args);
+	if (!res.ok) {
+		setRedirectCache(args[0], null);
+	}
+	return res;
 };
 
 /**** CUSTOM CSS ****/
