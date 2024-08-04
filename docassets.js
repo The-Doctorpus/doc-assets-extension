@@ -65,10 +65,8 @@ const BASE_REDIRECT = "https://akanecco23.github.io/doc-assets";
 // These URLs will never be redirected so
 // we don't need to check them.
 const EXCLUSION_REGEX = [
-	// Profile picture frames
-	/.+\/img\/badges/,
 	// Misc. images
-	/.+\/img\/(avatar|stats|verified)/,
+	/.+\/img\/(avatar|badges|stats|verified)/,
 	// Terrain textures
 	/.+\/assets\/packs\/\d+\/textures/,
 ];
