@@ -3,8 +3,7 @@
 /**** REDIRECT RULES ****/
 
 // Base URL
-// TODO: Change this to the official URL
-const BASE_REDIRECT = "https://akanecco23.github.io/doc-assets";
+const BASE_REDIRECT = "https://the-doctorpus.github.io/doc-assets";
 
 // These URLs will never be redirected so
 // we don't need to check them.
